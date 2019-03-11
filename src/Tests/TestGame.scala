@@ -26,6 +26,6 @@ class TestGame extends FunSuite {
 
     val goal = (playerA.location.x + 10) * 10
 
-    assert(PushBack.Game.pushBack(playerA, playerB) == goal)
+    assert(PushBack.Game.pushBack(playerA, playerB).x == goal)
   }
 }
