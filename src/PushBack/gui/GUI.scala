@@ -2,7 +2,10 @@ package PushBack.gui
 
 //import javafx.scene.input.KeyCode
 import PushBack.Game
+import PushBack.objects._
 import scalafx.application.JFXApp
+import scalafx.scene.paint.Color
+import scalafx.scene.shape.{Circle, Shape}
 
 object GUI extends JFXApp {
 
@@ -20,6 +23,18 @@ object GUI extends JFXApp {
 
   val borderWidths: Double = 1000
   val borderHeights: Double = 1000
+
+  def playerSprite(location: Vector, color: Color): Shape = {
+    new Circle {
+      location.x = Math.random() * PushBack.gui.GUI.windowWidth
+      location.y = Math.random() * PushBack.gui.GUI.windowHeight
+      centerX = location.x
+      centerY = location.y
+      radius = PushBack.gui.GUI.playerCircleRadius
+      fill = Color.Gold
+    }
+  }
+
 
   /*def keyPressed(keyCode: KeyCode): Unit = {
     keyCode.getName match {
