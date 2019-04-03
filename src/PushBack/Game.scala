@@ -7,6 +7,10 @@ class Game {
   val gridWidth: Double = 15
   val gridHeight: Double = 20
 
+}
+
+object Game {
+
   def declareTheWinner: Unit = {
 
   }
