@@ -1,12 +1,19 @@
 package PushBack.gui
 
 //import javafx.scene.input.KeyCode
+import PushBack.Game
 import scalafx.application.JFXApp
 
 object GUI extends JFXApp {
 
-  val windowWidth: Double = 1600
-  val windowHeight: Double = 1200
+  var lastUpdateTime: Long = System.nanoTime()
+
+  val game = new Game()
+
+  val scaleFactor: Double = 30.0
+
+  val windowWidth: Double = game.gridWidth * scaleFactor
+  val windowHeight: Double = game.gridHeight * scaleFactor
 
   val playerCircleRadius:Double = 40
   val playerSpeed: Double = 25

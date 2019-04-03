@@ -2,7 +2,10 @@ package PushBack
 
 import PushBack.objects._
 
-object Game {
+class Game {
+
+  val gridWidth: Double = 15
+  val gridHeight: Double = 20
 
   def declareTheWinner: Unit = {
 
