@@ -14,13 +14,16 @@ class Player (var location: Vector, var velocity: Vector, val userName: String, 
     this.leftKeyHeld = true
     this.velocity.x = this.playerSpeed
     this.location.x -= this.velocity.x
-    leftPressed()
+    println(leftKeyHeld)
+    println(location.x, location.y)
   }
 
   def rightPressed(): Unit = {
     this.rightKeyHeld = true
     this.velocity.x = this.playerSpeed
     this.location.x += this.velocity.x
+    println(rightKeyHeld)
+    println(location.x, location.y)
   }
 
   def upPressed(): Unit = {

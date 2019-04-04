@@ -31,8 +31,8 @@ object GUI extends JFXApp {
 
   def playerSprite(player: Player, color: Color): Shape = {
     new Circle {
-      player.location.x = Math.random() * PushBack.gui.GUI.windowWidth
-      player.location.y = Math.random() * PushBack.gui.GUI.windowHeight
+      player.location.x = 0.0
+      player.location.y = 0.0
       centerX = player.location.x
       centerY = player.location.y
       radius = player.playerCircleRadius

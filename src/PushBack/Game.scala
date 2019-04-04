@@ -4,8 +4,8 @@ import PushBack.objects._
 
 class Game {
 
-  val gridWidth: Double = 15
-  val gridHeight: Double = 20
+  val gridWidth: Double = 25
+  val gridHeight: Double = 25
 
   val player1 = new Player (
     new Vector(0, 0),
@@ -16,6 +16,12 @@ class Game {
 }
 
 object Game {
+
+  val playersInTheGame: List[Player] = List()
+
+  def login: Unit = {
+
+  }
 
   def declareTheWinner: Unit = {
 
