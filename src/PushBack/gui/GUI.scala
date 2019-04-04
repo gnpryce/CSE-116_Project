@@ -1,9 +1,11 @@
 package PushBack.gui
 
-//import javafx.scene.input.KeyCode
-import PushBack.Game
+import PushBack.{ArrowInputs, Game}
 import PushBack.objects._
+import javafx.scene.input.KeyEvent
 import scalafx.application.JFXApp
+import scalafx.application.JFXApp.PrimaryStage
+import scalafx.scene.{Group, Scene}
 import scalafx.scene.paint.Color
 import scalafx.scene.shape.{Circle, Shape}
 
@@ -18,31 +20,41 @@ object GUI extends JFXApp {
   val windowWidth: Double = game.gridWidth * scaleFactor
   val windowHeight: Double = game.gridHeight * scaleFactor
 
-  val playerCircleRadius:Double = 40
-  val playerSpeed: Double = 25
-
   val borderWidths: Double = 1000
   val borderHeights: Double = 1000
 
-  def playerSprite(location: Vector, color: Color): Shape = {
+  var sceneGraphics: Group = new Group {}
+
+  val player1Sprite: Shape = playerSprite(game.player1, Color.Gold)
+
+  sceneGraphics.children.add(player1Sprite)
+
+  def playerSprite(player: Player, color: Color): Shape = {
     new Circle {
-      location.x = Math.random() * PushBack.gui.GUI.windowWidth
-      location.y = Math.random() * PushBack.gui.GUI.windowHeight
-      centerX = location.x
-      centerY = location.y
-      radius = PushBack.gui.GUI.playerCircleRadius
-      fill = Color.Gold
+      player.location.x = Math.random() * PushBack.gui.GUI.windowWidth
+      player.location.y = Math.random() * PushBack.gui.GUI.windowHeight
+      centerX = player.location.x
+      centerY = player.location.y
+      radius = player.playerCircleRadius
+      fill = color
     }
   }
 
+  this.stage = new PrimaryStage {
+    this.title = "PushBack"
+    scene = new Scene(windowWidth, windowHeight) {
+      content = List(sceneGraphics)
 
-  /*def keyPressed(keyCode: KeyCode): Unit = {
-    keyCode.getName match {
-      case "Up" => player.translateY.value -= playerSpeed
-      case "Left" => player.translateX.value -= playerSpeed
-      case "Down" => player.translateY.value += playerSpeed
-      case "Right" => player.translateX.value += playerSpeed
-      case _ => println(keyCode.getName + " pressed with no action")
+      addEventHandler(KeyEvent.ANY, new ArrowInputs(game.player1))
     }
-  }*/
+
+    val update: Long => Unit = (time: Long) => {
+      val dt: Double = (time - lastUpdateTime) / 1000000000.0
+      lastUpdateTime = time
+      game()
+
+      player1Sprite.translateX.value = game.player1.location.x
+      player1Sprite.translateY.value = game.player1.location.y
+    }
+  }
 }
