@@ -47,14 +47,5 @@ object GUI extends JFXApp {
 
       addEventHandler(KeyEvent.ANY, new ArrowInputs(game.player1))
     }
-
-    val update: Long => Unit = (time: Long) => {
-      val dt: Double = (time - lastUpdateTime) / 1000000000.0
-      lastUpdateTime = time
-      game()
-
-      player1Sprite.translateX.value = game.player1.location.x
-      player1Sprite.translateY.value = game.player1.location.y
-    }
   }
 }

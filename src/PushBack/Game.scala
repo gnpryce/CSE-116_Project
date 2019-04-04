@@ -8,7 +8,7 @@ class Game {
   val gridHeight: Double = 20
 
   val player1 = new Player (
-    new Vector(gridWidth / 3.0, 0),
+    new Vector(0, 0),
     new Vector(0, 0),
     "PLAYER 1",
     5

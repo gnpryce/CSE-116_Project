@@ -12,41 +12,51 @@ class Player (var location: Vector, var velocity: Vector, val userName: String, 
 
   def leftPressed(): Unit = {
     this.leftKeyHeld = true
-    this.leftPressed()
+    this.velocity.x = this.playerSpeed
+    this.location.x -= this.velocity.x
+    leftPressed()
   }
 
   def rightPressed(): Unit = {
     this.rightKeyHeld = true
-    this.rightPressed()
+    this.velocity.x = this.playerSpeed
+    this.location.x += this.velocity.x
   }
 
   def upPressed(): Unit = {
     this.upKeyHeld = true
-    this.upPressed()
+    this.velocity.y = this.playerSpeed
+    this.location.y -= this.velocity.y
   }
 
   def downPressed(): Unit = {
     this.downKeyHeld = true
-    this.downPressed()
+    this.velocity.y = this.playerSpeed
+    this.location.y += this.velocity.y
   }
 
   def leftReleased(): Unit = {
     this.leftKeyHeld = false
-    this.leftReleased()
+    this.playerStop()
   }
 
   def rightReleased(): Unit = {
     this.rightKeyHeld = false
-    this.rightReleased()
+    this.playerStop()
   }
 
   def upReleased(): Unit = {
     this.upKeyHeld = false
-    this.upReleased()
+    this.playerStop()
   }
 
   def downReleased(): Unit = {
     this.downKeyHeld = false
-    this.downReleased()
+    this.playerStop()
+  }
+
+  def playerStop(): Unit = {
+    this.velocity.x = 0.0
+    this.velocity.y = 0.0
   }
 }
