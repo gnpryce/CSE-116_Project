@@ -7,7 +7,7 @@ import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
 import scalafx.scene.{Group, Scene}
 import scalafx.scene.paint.Color
-import scalafx.scene.shape.{Circle, Shape}
+import scalafx.scene.shape.{Circle, Rectangle, Shape}
 
 object GUI extends JFXApp {
 
@@ -31,13 +31,32 @@ object GUI extends JFXApp {
 
   def playerSprite(player: Player, color: Color): Shape = {
     new Circle {
-      player.location.x = 0.0
-      player.location.y = 0.0
+      player.location.x = game.player1.location.x
+      player.location.y = game.player1.location.y
       centerX = player.location.x
       centerY = player.location.y
       radius = player.playerCircleRadius
       fill = color
     }
+  }
+
+  def leftBoundary(): Shape = {
+
+    val leftBound = new Rectangle {
+      width = 0.1 * scaleFactor
+      height = borderHeights * scaleFactor
+      fill = Color.Black
+    }
+    leftBound
+  }
+
+  def topBoundary(): Shape = {
+    val topBound = new Rectangle {
+      width = borderWidths * scaleFactor
+      height = 0.1 * scaleFactor
+      fill = Color.Black
+    }
+    topBound
   }
 
   this.stage = new PrimaryStage {
@@ -47,5 +66,8 @@ object GUI extends JFXApp {
 
       addEventHandler(KeyEvent.ANY, new ArrowInputs(game.player1))
     }
+
+    sceneGraphics.children.add(leftBoundary())
+    sceneGraphics.children.add(topBoundary())
   }
 }

@@ -12,6 +12,7 @@ abstract class Controller(player: Player) extends EventHandler[KeyEvent] {
   val DOWN: String
 
   override def handle(event: KeyEvent): Unit = {
+
     val keyCode = event.getCode
     event.getEventType.getName match {
       case "KEY_RELEASED" => keyCode.getName match {
@@ -30,12 +31,16 @@ abstract class Controller(player: Player) extends EventHandler[KeyEvent] {
       }
       case _ =>
     }
+
   }
+
 }
 
 class ArrowInputs(player: Player) extends Controller(player) {
+
   override val LEFT: String = "Left"
   override val RIGHT: String = "Right"
   override val UP: String = "Up"
   override val DOWN: String = "Down"
+
 }
