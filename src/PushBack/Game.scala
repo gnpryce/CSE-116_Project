@@ -1,21 +1,38 @@
 package PushBack
 
 import PushBack.objects._
+import scalafx.scene.shape.Circle
 
 class Game {
 
-  val gridWidth: Double = 25
-  val gridHeight: Double = 25
+  val gridWidth: Double = 30
+  val gridHeight: Double = 30
+
 
   val player1 = new Player (
-    new Vector(0, 0),
-    new Vector(0, 0),
+    new physics.Vector(100, 100),
+    new physics.Vector(0, 0),
+    new Circle(),
     "PLAYER 1",
     5
   )
-}
 
-object Game {
+  val player2 = new Player (
+    new physics.Vector(300, 200),
+    new physics.Vector(0, 0),
+    new Circle(),
+    "PLAYER 2",
+    5
+  )
+
+  val testPotion = new PushPotion(
+    new physics.Vector(100, 100),
+    5
+  )
+
+  if (physics.Physics.detectContact(player1,player2)){
+    println("DETECTED")
+  }
 
   val playersInTheGame: List[Player] = List()
 
@@ -30,26 +47,4 @@ object Game {
   def elimination: Unit = {
 
   }
-
-  def detectContact(player1: Player, player2: Player): Boolean = {
-    val seg = math.sqrt(math.pow(player1.location.x - player2.location.x, 2) + math.pow(player1.location.y - player2.location.y, 2))
-    if (seg <= player1.playerCircleRadius * 2){
-      println("Contact Detected")
-      true
-    }
-    else {
-      println("No Contact")
-      false
-    }
-  }
-
-  def pushBack(player1: Player, player2: Player): Vector = {
-    var newVec: Vector = new Vector(player1.location.x, player1.location.y)
-    val seg = math.sqrt(math.pow(player1.location.x - player2.location.x, 2) + math.pow(player1.location.y - player2.location.y, 2))
-    if (seg <= player1.playerCircleRadius * 2){
-      newVec = new Vector((player1.location.x + 10) * player2.push,player1.location.y)
-    }
-    newVec
-  }
-
 }

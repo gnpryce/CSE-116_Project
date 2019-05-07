@@ -1,31 +1,39 @@
 package PushBack.Tests
+
+import PushBack.physics
 import org.scalatest._
-import PushBack.objects.{Player, Vector}
+import PushBack.objects.Player
+import PushBack.physics.Physics
+import scalafx.scene.shape.Circle
 
 class TestGame extends FunSuite {
 
   test("This is a test for detecting contact between players") {
 
-    val vec: Vector = new Vector(4.0, 2.0)
-    val vel: Vector = new Vector(0.0, 5.0)
-    val vec2: Vector = new Vector(12.0, 6.0)
-    val playerA: Player = new Player(vec, vel, "user 1", 5)
-    val playerB: Player = new Player(vec, vel, "user 2", 10)
-    val playerC: Player = new Player(vec2, vel, "user 3", 5)
+    val vec: physics.Vector = new physics.Vector(4.0, 2.0)
+    val vel: physics.Vector = new physics.Vector(0.0, 5.0)
+    val vec2: physics.Vector = new physics.Vector(250.0, 10.0)
+    val circle = new Circle()
 
-    assert(PushBack.Game.detectContact(playerA, playerB) == true)
-    assert(PushBack.Game.detectContact(playerA, playerC) == false)
+    val playerA: Player = new Player(vec, vel, circle, "user 1", 5)
+    val playerB: Player = new Player(vec, vel, circle, "user 2", 10)
+    val playerC: Player = new Player(vec2, vel, circle, "user 3", 5)
+
+    assert(Physics.detectContact(playerA, playerB) == true)
+    assert(Physics.detectContact(playerA, playerC) == false)
   }
 
   test("This is a test for push back") {
-    val vec: Vector = new Vector(4.0, 2.0)
-    val vel: Vector = new Vector(0.0, 5.0)
-    //val vec2: Vector = new Vector(12.0, 6.0)
-    val playerA: Player = new Player(vec, vel, "user 1", 5)
-    val playerB: Player = new Player(vec, vel, "user 2", 10)
+
+    val vec: physics.Vector = new physics.Vector(4.0, 2.0)
+    val vel: physics.Vector = new physics.Vector(0.0, 5.0)
+    val circle = new Circle()
+
+    val playerA: Player = new Player(vec, vel, circle, "user 1", 5)
+    val playerB: Player = new Player(vec, vel, circle, "user 2", 10)
 
     val goal = (playerA.location.x + 10) * 10
 
-    assert(PushBack.Game.pushBack(playerA, playerB).x == goal)
+    //assert(Physics.pushBack(playerA, playerB).x == goal)
   }
 }
