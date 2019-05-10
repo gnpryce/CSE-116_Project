@@ -13,7 +13,7 @@ function parseGameState(event) {
 
     drawGameBoard(gameState['gridSize']);
 
-    for (let player of gameState['players']) {
+    for (player of gameState['players']) {
         placeCircle(player['x'], player['y'], player['username'] === socket.id ? '#40FF33' : '#FF4533', 2.0);
     }
 }

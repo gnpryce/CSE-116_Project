@@ -21,7 +21,7 @@ class Player (location: Vector, velocity: Vector)
 
   def move(direction: Vector){
     val normalDirection = direction.normal2d()
-    val this.velocity = new Vector(normalDirection.x * playerSpeed, normalDirection.y * playerSpeed)
+    velocity = new Vector(normalDirection.x * playerSpeed, normalDirection.y * playerSpeed)
   }
 
   def playerStop(): Unit = {
