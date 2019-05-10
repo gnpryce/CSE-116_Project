@@ -1,4 +1,4 @@
-package PushBack.Tests
+/*package PushBack.Tests
 
 import PushBack.physics
 import org.scalatest._
@@ -37,3 +37,4 @@ class TestGame extends FunSuite {
     //assert(Physics.pushBack(playerA, playerB).x == goal)
   }
 }
+*/

@@ -2,78 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PushBack
-
-    </title>
-    <link rel="stylesheet" href= "design.css">
-
+    <title>PushBack</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
 </head>
-
 <body>
-<header>
-    <h1>PushBack
-        <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/81/collision-symbol_1f4a5.png">
-    </h1>
-</header>
 
+<canvas id="canvas">
+</canvas>
 
-<div class = "text" align="center">
-    <div id = "instruction" class="id">Enter a username.</div>
-    <p> </p>
-    <div id = "instruc2" class="id">Last person to survive WINS!</div>
-</div>
-<!-- this add text to ur page ;)--->
-
-<div class = "text1" align="center">
-    <form>
-        <b id = "demo">Username:<br></b>
-        <p> </p>
-        <input type="text" name="firstName"/>
-        <button type="button" onclick ="game()"> Set Name </button>
-
-        <script>
-            function game() {
-                document.getElementById("demo").innerHTML = "Username: " + document;
-            }
-        </script>
-    </form>
-</div>
-
-<div class="grid">
-    <div class="sub-grid" id="sg">
-        <h3> Game Design</h3>
-    </div>
-    <div class="sub-grid1" id="sg1">
-        <h3> Countdown until Game Starts: 0:00 </h3>
-    </div>
-    <div class="sub-grid2" id="sg2">
-        <h3> How to Play:</h3>
-        <p> 1. Use your arrow keys to move your piece around.</p>
-        <p> 2. There will be power-ups randomly placed on the map that you can
-        collect to push another player further back than normal.</p>
-        <p> 3. To aim is to be able to hit another player enough that they
-        fall of the platform.</p>
-
-
-    </div>
-    <div class="sub-grid3" id="sg3">
-        <h3> About: </h3>
-        <p> Push Back is a MM0 game where the aim is for you to try to
-        survive by knocking other players off while the map is shrinking
-            and winning by being the last one standing on the given platform.</p>
-    </div>
-    <div class="sub-grid4" id="sg4">
-        <h3> Leaderboard:</h3>
-        <p>
-            1.
-        </p>
-    </div>
-
-
-</div>
-
-<a href="#" class="border-button"> Black </a>
-
+<script src="VIEW.js"></script>
+<script src="inputController.js"></script>
 
 </body>
-</html>

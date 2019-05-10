@@ -1,8 +1,5 @@
 package PushBack.physics
 
-import PushBack.physics
-import PushBack.objects.Player
-
 object Physics {
 
   def computePotentialLocation(obj1: PhysicalObject, changeInTime: Double): Vector = {
@@ -12,23 +9,56 @@ object Physics {
     new Vector(x, y)
   }
 
-  def detectContact(player1: Player, player2: Player): Boolean = {
-    val seg = math.sqrt(math.pow(player1.location.x - player2.location.x, 2) + math.pow(player1.location.y - player2.location.y, 2))
-    if (player1.location == player2.location){
-      true
-    }
-    else {
-      false
+  val EPSILON: Double = 0.000000001
+
+  def equalDoubles(d1: Double, d2: Double): Boolean = {
+    (d1 - d2).abs < EPSILON
+  }
+
+  def slope(vector1: Vector, vector2: Vector): Double = {
+    if(vector2.x - vector1.x == 0.0){
+      100000000000.0
+      //      Double.PositiveInfinity
+    }else {
+      (vector2.y - vector1.y) / (vector2.x - vector1.x)
     }
   }
 
-  def pushBack(player1: Player, player2: Player): Unit = {
-    var newVec: physics.Vector = new physics.Vector(player2.location.x, player2.location.y)
-    val seg = math.sqrt(math.pow(player1.location.x - player2.location.x, 2) + math.pow(player1.location.y - player2.location.y, 2))
-    if (seg <= player1.playerCircleRadius * 2){
-      newVec = new physics.Vector((player2.location.x + 10) * player1.push,player1.location.y)
+  def yIntercept(vector: Vector, m: Double): Double = {
+    vector.y - m * vector.x
+  }
+
+  def detectContact(something: PhysicalObject, objects: List[PhysicalObject], changeInTime: Double): Boolean = {
+    for (oneObject <- objects){
+      if (computePotentialLocation(something, changeInTime) == oneObject.location){
+        println("DETECTED")
+        true
+      }
     }
-    player2.location = newVec
+    false
+  }
+
+
+  def updateWorld(gameWorld: World, changeInTime: Double): Unit = {
+
+    for (x <- gameWorld.objects) {
+
+      val potentialLocation = computePotentialLocation(x, changeInTime)
+
+      var collisionDetected = false
+
+      if (detectContact(x, gameWorld.objects, changeInTime)){
+        collisionDetected = true
+      }
+
+      if (!collisionDetected) {
+        x.location.x = potentialLocation.x
+        x.location.y = potentialLocation.y
+      }
+
+    }
+
+    gameWorld.objects = gameWorld.objects.filter((objects: PhysicalObject) => !objects.destroyed)
   }
 
 }

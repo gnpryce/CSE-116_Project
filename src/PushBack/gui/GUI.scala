@@ -1,4 +1,4 @@
-package PushBack.gui
+/*package PushBack.gui
 
 import PushBack.{ArrowInputs, Game}
 import javafx.scene.input.KeyEvent
@@ -84,3 +84,4 @@ object GUI extends JFXApp {
     sceneGraphics.children.add(bottomBoundary())
   }
 }
+*/
